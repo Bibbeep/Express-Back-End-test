@@ -83,7 +83,7 @@ class Homepage {
 
         const totalPage = Math.ceil(total / limit);
 
-        if (totalPage < page) {
+        if (totalPage !== 0 && totalPage < page) {
             throw new HttpRequestError('Validasi gagal. Pastikan page tidak melebih total halaman.', 400);
         }
 

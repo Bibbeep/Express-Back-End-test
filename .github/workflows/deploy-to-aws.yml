@@ -38,7 +38,7 @@ jobs:
           host: ${{ secrets.HOST_DNS }}
           username: ${{ secrets.USERNAME }}
           key: ${{ secrets.EC2_SSH_KEY }}
-          envs: NODE_ENV, PORT, DATABASE_URL, JWT_SECRET, EMAIL_PASS, EMAIL_USER, EMAIL_HOST, CLIENT_URL
+          envs: NODE_ENV, PORT, DATABASE_URL, JWT_SECRET, EMAIL_PASS, EMAIL_USER, EMAIL_HOST, CLIENT_URL, DOMAIN_NAME
           script: |
             sudo apt-get -y update
             sudo apt-get -y upgrade
@@ -50,7 +50,7 @@ jobs:
             npm ci
             npm i -g pm2
             npx prisma migrate deploy
-            pm2 start app.js
+            pm2 start -f app.js
             pm2 startup -f ubuntu
             sudo ufw --force enable
             sudo ufw allow ssh
