@@ -74,7 +74,10 @@ class Homepage {
 
         const total = await prisma.flight.count({
             where: {
-                ...filters
+                ...filters,
+                Schedule: {
+                    some: {}
+                }
             }
         });
 
